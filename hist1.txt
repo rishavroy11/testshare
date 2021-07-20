@@ -1,0 +1,256 @@
+    1  cat /etc/redhat-release 
+    2  vim cred.txt
+    3  cat cred.txt 
+    4  git config --global credential.helper cache
+    5  vim cred.txt 
+    6  cat cred.txt 
+    7  lab-configure 
+    8  ls
+    9  git clone https://github.com/anandpavithran/DO180-apps
+   10  ls
+   11  cd DO180-apps/
+   12  ls
+   13  git status
+   14  touch a.txt
+   15  git status
+   16  rm  a.txt 
+   17  HIST
+   18  history 
+   19  cd
+   20  ls
+   21  pwd
+   22  ls
+   23  mkdir test1
+   24  ls
+   25  rm -rvf test1
+   26  cp cred.txt /home/student/Downloads/
+   27  cd Downloads/
+   28  ls
+   29  pwd
+   30  cd
+   31  sudo yum info httpd
+   32  sudo yum install vsftpd
+   33  sudo yum install vsftpd -y
+   34  rpm -qa vsftpd
+   35  sudo yum remove vsftpd
+   36  rpm -qa vsftpd
+   37  vi a.txt
+   38  cat a.txt 
+   39  vi a.txt 
+   40  rm a.txt 
+   41  rpm -qa podman
+   42  sudo podman images
+   43  sudo podman pull ubi8
+   44  sudo podman images
+   45  vim /etc/containers/registries.conf 
+   46  sudo vim /etc/containers/registries.conf 
+   47  sudo podman search infosys
+   48  sudo podman pull quay.io/anandpavithran/infosys:1.0
+   49  sudo podman images
+   50  sudo podman rmi -a -f
+   51  sudo podman images
+   52  sudo podman ps -a
+   53  ifconfig 
+   54  sudo podman run -dit --name test1 quay.io/anandpavithran/infosy:1.0
+   55  sudo podman run -dit --name test1 quay.io/anandpavithran/infosys:1.0
+   56  sudo podman ps
+   57  ifconfig 
+   58  sudo podman ps
+   59  sudo podman inspect test1| grep IPA
+   60  sudo podman exec -it test1 ls
+   61  sudo podman exec -it test1 hostname
+   62  sudo podman exec -it test1 bash
+   63  sudo podman ps
+   64  sudo podman run -dit --name test2 -e "FIRST=ANAND" -e "SECOND=PAVITHRAN" quay.io/anandpavithran/infosys:1.0
+   65  sudo podman ps
+   66  sudo podman exec -it test1
+   67  sudo podman exec -it test1 bash
+   68  sudo podman exec -it test2 bash
+   69  sudo podman exec -it test1 bash
+   70  sudo -i
+   71  ls
+   72  ps -aux
+   73  ifconfig 
+   74  systemd-cgtop 
+   75  strace -c ls
+   76  ls
+   77  ls -Z
+   78  ps -Z
+   79  ps -auxZ
+   80  sudo semanage port -l
+   81  sudo podman rm -a -f
+   82  ifconfig 
+   83  podman run -dit --name test1 ubi8
+   84  podman ps
+   85  ifconfig 
+   86  podman ps
+   87  podman exec -it test1
+   88  podman exec -it test1 bash
+   89  podman rm -a
+   90  podman rm -a -f
+   91  podman rmi -a -f
+   92  podman ps
+   93  man podman run
+   94  sudo podman search ubi8
+   95  sudo podman search infosys
+   96  sudo podman rmi -a
+   97  sudo podman rm -a -f
+   98  whoami
+   99  vim /etc/containers/registries.
+  100  vim /etc/containers/registries.conf 
+  101  sudo vim /etc/containers/registries.conf 
+  102  sudo podman run --rm --name asroot -ti ubi8:latest /bin/bash
+  103  sudo podman ps
+  104  sudo podman ps -a
+  105  podman run -it --name test1 ubi8 /bin/bash
+  106  podman restart test1
+  107  podman run -dit --name test1 ubi8 /bin/bash
+  108  podman ps 
+  109  podman kill test1
+  110  podman ps 
+  111  podman ps  -a
+  112  podman rm test1
+  113  podman ps
+  114  podman ps -a
+  115  podman run -dit --name test1 quay.io/anandpavithran/infosys:1.0
+  116  podman ps
+  117  podman exec -it test1 bash
+  118  podman ps
+  119  podman rm test1 -f
+  120  podman ps
+  121  podman ps -a
+  122  mkdir share
+  123  podman run -dit --name test1 -v /home/student/share:/var/www/html quay.io/anandpavithran/infosys:1.0
+  124  podman ps
+  125  podman exec -it test1 bash
+  126  podman unshare chown -R 1001:0 /home/student/share
+  127  podman exec -it test1 bash
+  128  ls -ldZ /home/student/share/
+  129  man semanage fcontext
+  130  sudo semanage fcontext -a -t container_file_t "/home/student/share(/.*)?"
+  131  ls -ldZ /home/student/share/
+  132  sudo restorecon -RvF /home/student/share/
+  133  ls -ldZ /home/student/share/
+  134  podman exec -it test1 bash
+  135  ls
+  136  cat share/index.html 
+  137  vim share/index.html 
+  138  sudo vim share/index.html 
+  139  podman exec -it test1 bash
+  140  podman rm test1
+  141  podman rm test1 -f
+  142  podman ps -a
+  143  cat /home/student/share/index.html 
+  144  podman run -dit --name test1 -v /home/student/share:/var/www/html quay.io/anandpavithran/infosys:1.0
+  145  podman exec -it test1 bash
+  146* 
+  147  podman rm test1 -f
+  148  podman run -dit --name test1 -v /home/student/share:/var/www/html -p 8051:8080 quay.io/anandpavithran/infosys:1.0
+  149  curl http://localhost:8051
+  150  podman rm test1 -f
+  151  podman run -dit --name test1 -v /home/student/share:/var/www/html -p 8051:8080 quay.io/anandpavithran/infosys:1.0
+  152  podman ps
+  153  curl http://workstation.lab.example.com:8051
+  154  sudo vim /home/student/share/index.html 
+  155  curl http://workstation.lab.example.com:8051
+  156  sudo podman exec -it test1 bash
+  157  podman exec -it test1 bash
+  158  podman search ubi
+  159  podman search infosys
+  160  curl -Ls https://quay.io/v2/anandpavithran/infosys/tags/list
+  161  curl -Ls https://quay.io/v2/anandpavithran/infosys/tags/list |python3 -m json.tool
+  162  podman images
+  163  podman rm -a -f
+  164  podman rmi -a
+  165  podman images
+  166  podman pull quay.io/anandpavithran/infosys:1.0
+  167  podman images
+  168  podman pull quay.io/anandpavithran/ibm:1.0
+  169  podman login quay.io
+  170  podman pull quay.io/anandpavithran/ibm:1.0
+  171  podman images
+  172  podman rmi -a
+  173  podman logout --all
+  174  podman pull quay.io/anandpavithran/ibm:1.0
+  175  podman pull quay.io/anandpavithran/infosys:1.0
+  176  sudo -i
+  177  podman images
+  178  vim /etc/containers/registries.conf 
+  179  podman pull ubi8
+  180  podman images
+  181  podman run -dit --name test1 registry.access.redhat.com/ubi8:latest
+  182  podman ps
+  183  podman exec -it test1 bash
+  184  podman ps
+  185  podman stop test1
+  186  podman commit anand:1.0 test1
+  187  podman commit test1 anand
+  188  podman images
+  189  podman start test1
+  190  podman exec -it test1 bash
+  191  podman stop test1
+  192  podman images
+  193  podman commit test1 danske
+  194  podman images
+  195  podman commit test1 anand
+  196  podman images
+  197  podman run -dit --name test2 danske:latest
+  198  podman ps
+  199  podman exec -it test2
+  200  podman exec -it test2 bash
+  201  podman images
+  202  podman tag danske:latest quay.io/anandpavithran/danske:1.0
+  203  podman images
+  204  podman login quay.io
+  205* podman pull quay.io/anan
+  206  podman images
+  207  podman save -o danske.tar quay.io/anandpavithran/danske:1.0
+  208  ls
+  209  git clone https://gtihub.com/anandpavithran/testshare
+  210  git clone https://github.com/anandpavithran/testshare
+  211  rm -rvf testshare/
+  212  ls
+  213  git clone https://gtihub.com/anandpavithran/testshare
+  214  rm -rvf testshare/
+  215  ls
+  216  git clone https://github.com/anandpavithran/testshare
+  217  ls
+  218  cp danske.tar testshare/
+  219  cd testshare/
+  220  ls
+  221  git status
+  222  git add .
+  223  git commit . -m "20072021"
+  224  git push --all
+  225  podman pull scratch
+  226  podman pull ubi-init
+  227  podman pull ubi8-init
+  228  podman images
+  229  podman pull ubi8-minmal
+  230  podman pull ubi8-minimal
+  231  podman images
+  232  podman save -o registry.access.redhat.com/ubi8-minimal:latest
+  233  podman save -o ubi.tar registry.access.redhat.com/ubi8-minimal:latest 
+  234  ls
+  235  rm danske.tar 
+  236  git status
+  237  git add .
+  238  git commit . -m "20072021"
+  239  git push --all
+  240  ls
+  241  cd
+  242  podman rm -a -f
+  243  podman rmi -a
+  244  podman rmi -a -f
+  245  podman images
+  246  ls
+  247  podman load -i danske.tar
+  248  podman images
+  249  podman pull ubi8
+  250  podman run -it --name test1 ubi8 bash
+  251  podman rm -a -f
+  252  podman rmi -a -f
+  253  podman images
+  254  podman ps -a
+  255  history 
+  256  history > hist1.txt

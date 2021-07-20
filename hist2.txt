@@ -1,0 +1,15 @@
+    1  sudo ps -ef | grep "sleep 1000"
+    2  podman run --rm --name rootless -ti ubi8:latest /bin/bash
+    3  podman ps
+    4  podman ps -a
+    5  podman ps
+    6  podman exec -it test1 /bin/bash
+    7  podman ps
+    8  podman inspect test1
+    9  podman stop test1
+   10  podman ps
+   11  podman ps -a
+   12  podman rm test1
+   13  podman ps -a
+   14  podman diff test1
+   15  history > hist2.txt
